@@ -1,7 +1,6 @@
 use std::fs::File;
 use std::io::{self, Read};
 use std::process;
-use structopt::StructOpt;
 
 #[macro_use]
 extern crate lazy_static;
@@ -18,6 +17,7 @@ mod result;
 mod writeable;
 mod writer;
 
+use clap::Parser;
 use config::Config;
 use error::Error;
 use opt::Opt;
@@ -25,7 +25,7 @@ use result::Result;
 use writer::WriteReceiver;
 
 fn main() {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     let stdout = io::stdout();
     let lock = stdout.lock();
@@ -53,6 +53,7 @@ fn main() {
 }
 
 fn main_generic<W: WriteReceiver>(opt: Opt, handle: &mut W) -> Result<()> {
+    dbg!(&opt.field_separator);
     let config = Config::new(opt);
 
     let read = match &config.opt.input {
