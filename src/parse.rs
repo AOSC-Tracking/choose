@@ -1,15 +1,15 @@
 use std::string::FromUtf8Error;
 
 use backslash::escape_ascii;
+use once_cell::sync::Lazy;
 use regex::Regex;
 
 use crate::choice::{Choice, ChoiceKind};
 use crate::error::ParseRangeError;
 use crate::parse_error::ParseError;
 
-lazy_static! {
-    pub static ref PARSE_CHOICE_RE: Regex = Regex::new(r"^(-?\d*)(:|\.\.=?)(-?\d*)$").unwrap();
-}
+
+pub static PARSE_CHOICE_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"^(-?\d*)(:|\.\.=?)(-?\d*)$").unwrap());
 
 pub fn choice(src: &str) -> Result<Choice, ParseError> {
     let cap = match PARSE_CHOICE_RE.captures_iter(src).next() {

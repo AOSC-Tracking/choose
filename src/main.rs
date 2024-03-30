@@ -2,9 +2,6 @@ use std::fs::File;
 use std::io::{self, Read};
 use std::process;
 
-#[macro_use]
-extern crate lazy_static;
-
 mod choice;
 mod config;
 mod error;
