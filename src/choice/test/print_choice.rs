@@ -3,7 +3,7 @@ use crate::{process_all_choices_for_line, writer::Writer};
 use super::*;
 
 fn test_fn(vec: Vec<&str>, input: &str, output: &str) {
-    let config = Config::from_iter(vec);
+    let config = Config::from_vec(vec);
     let mut handle = Writer::from(BufWriter::new(MockStdout::new()));
 
     process_all_choices_for_line(&mut handle, &config, input).unwrap();
@@ -23,7 +23,7 @@ fn print_after_end() {
 
 #[test]
 fn print_out_of_order() {
-    let config = Config::from_iter(vec!["choose", "3", "1"]);
+    let config = Config::from_vec(vec!["choose", "3", "1"]);
     let mut handle = Writer::from(BufWriter::new(MockStdout::new()));
     let mut handle1 = Writer::from(BufWriter::new(MockStdout::new()));
 

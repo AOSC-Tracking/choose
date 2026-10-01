@@ -3,7 +3,7 @@ use crate::{choice::test::MockStdout, config::Config, process_all_choices_for_li
 use super::*;
 
 fn test_fn(vec: Vec<&str>, input: &str, output: &str) {
-    let config = Config::from_iter(vec);
+    let config = Config::from_vec(vec);
     let mut handle = Writer::from(BufWriter::new(MockStdout::new()));
 
     process_all_choices_for_line(&mut handle, &config, input).unwrap();

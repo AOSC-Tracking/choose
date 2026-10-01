@@ -1,9 +1,7 @@
 use crate::config::Config;
 use crate::opt::Opt;
 use crate::writer::Writer;
-use std::ffi::OsString;
 use std::io::{self, BufWriter, Write};
-use structopt::StructOpt;
 
 mod get_negative_start_end;
 mod is_reverse_range;
@@ -11,12 +9,9 @@ mod print_choice;
 mod literal_separators;
 
 impl Config {
-    pub fn from_iter<I>(iter: I) -> Self
-    where
-        I: IntoIterator,
-        I::Item: Into<OsString> + Clone,
+    pub fn from_vec(v: Vec<&str>) -> Self
     {
-        Config::new(Opt::from_iter(iter))
+        Config::new(Opt::new(v))
     }
 }
 

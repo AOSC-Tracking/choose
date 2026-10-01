@@ -1,7 +1,6 @@
 use std::fs::File;
 use std::io::{self, BufRead, Read};
 use std::process;
-use structopt::StructOpt;
 
 
 mod choice;
@@ -23,7 +22,7 @@ use writer::WriteReceiver;
 use crate::writer::Writer;
 
 fn main() {
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     let stdout = io::stdout();
     let lock = stdout.lock();
