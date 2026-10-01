@@ -3,8 +3,6 @@ use std::io::{self, BufRead, Read};
 use std::process;
 use structopt::StructOpt;
 
-#[macro_use]
-extern crate lazy_static;
 
 mod choice;
 mod config;
